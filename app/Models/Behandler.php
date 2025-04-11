@@ -15,6 +15,7 @@ class Behandler extends Model
 
     protected $fillable = [
         'name',
+        'titel',
         'fachgebiet',
         'ist_verfuegbar'
     ];

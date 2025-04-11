@@ -14,6 +14,6 @@ class Versicherung extends Model
     protected $fillable = [
         'name',
         'typ',
-        'ist_aktive'
+
     ];
 }

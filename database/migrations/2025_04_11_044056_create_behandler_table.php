@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('behandler', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('titel');
             $table->string('fachgebiet');
             $table->boolean('ist_verfuegbar');
             $table->timestamps();

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('versicherung', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('typ', ['gesetzlich', 'private'])-> default('gesetzlich');
+            $table->enum('typ', ['gesetzlich', 'privat']);
             $table->timestamps();
         });
     }
