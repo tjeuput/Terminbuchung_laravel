@@ -8,7 +8,7 @@ class TerminbuchungController extends Controller
 {
     public function showVersicherungForm(){
 
-        // return view VersicherungForm
+        return view('buchung.index');
     }
 
     public function storeVersicherung(){

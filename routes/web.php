@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TerminbuchungController;
 
+Route::get('/',function(){
+    return view('components.layout');
+});
+
 Route::get('/termin/versicherung', [TerminbuchungController::class, 'showVersicherungForm']);
 Route::post('/termin/versicherung',[TerminbuchungController::class, 'storeVersicherung']);
 Route::get('/termin/behandler',[TerminbuchungController::class, 'showBehandlerDatumForm']);
