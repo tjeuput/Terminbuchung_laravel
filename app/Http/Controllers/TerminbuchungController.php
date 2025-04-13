@@ -12,8 +12,6 @@ class TerminbuchungController extends Controller
 {
     public function schritt1()
     {
-        dump(session()->all());
-
 
         return view('buchung.schritt1');
     }
@@ -38,7 +36,7 @@ class TerminbuchungController extends Controller
         if (!session()->has('terminbuchung.schritt1')) {
             return redirect()->route('terminbuchung.schritt1');
         }
-        dump(session()->all());
+
         return view('buchung.schritt2', [
             'currentStep'=> 2,
 
@@ -52,9 +50,6 @@ class TerminbuchungController extends Controller
             'datum' => 'required|date'
         ]);
 
-
-
-
         $formattedDatum = date('Y-m-d', strtotime($validated['datum']));
         $behandlerId = $validated['behandler_id'];
 
@@ -64,7 +59,7 @@ class TerminbuchungController extends Controller
             ->where('ist_verfuegbar', 1)
             ->count();
 
-        // Formatierung mit deinem Helper
+        // Formatierung mit Helper
         $deDatum = DatumFormatHelper::deDatum($formattedDatum);
         $deWochentag = DatumFormatHelper::deWochentag($formattedDatum);
 
@@ -99,8 +94,6 @@ class TerminbuchungController extends Controller
             "datum"=>  $terminTag
         ];
 
-
-
         $sessionManager->updateStep(3, $behandler);
         session(['terminbuchung.schritt2' => $validated]);
 
@@ -108,7 +101,7 @@ class TerminbuchungController extends Controller
     }
 
     public function schritt3(){
-        dump(session()->all());
+
         if(!session()->has('terminbuchung.schritt1') && !session()->has('terminbuchung.schritt2'))
         {
             return redirect()->route('terminbuchung.schritt1');
@@ -172,7 +165,6 @@ class TerminbuchungController extends Controller
 
         $sessionManager->updateStep(4, $validated);
 
-
         return redirect()->route('terminbuchung.schritt4');
     }
 
@@ -181,8 +173,6 @@ class TerminbuchungController extends Controller
         if (!session()->has('terminbuchung.schritt1') || !session()->has('terminbuchung.schritt2') || !session()->has('terminbuchung.schritt3')) {
             return redirect()->route('terminbuchung.schritt1');
         }
-        dump(session()->all());
-
 
         return view('buchung.schritt4', [
             'currentStep'=> 4,
@@ -201,7 +191,6 @@ class TerminbuchungController extends Controller
             'handynummer'=>'tel',
             'sonstige'=>'string',
         ]);
-
 
         return view('buchung.schritt4', [
             'currentStep'=> 4,

@@ -18,8 +18,5 @@ class TerminSessionManager
         ]);
     }
 
-    public function getTerminSession(): array
-    {
-        return session(self::BASE_KEY.".termininformation", []);
-    }
+
 }

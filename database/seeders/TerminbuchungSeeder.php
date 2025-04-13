@@ -26,7 +26,7 @@ class TerminbuchungSeeder extends Seeder
 
         ]);
 
-        $drMendez = Behandler::create(['name' => 'Gloria',
+        $drMendez = Behandler::create(['name' => 'Gloria Mendez',
             'titel' => 'Dr.',
             'fachgebiet' => 'Sportmedizin',
             'ist_verfuegbar'=>true

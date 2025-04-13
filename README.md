@@ -1,66 +1,250 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Ausgangsituation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Ausgangsituation
 
-## About Laravel
+Das Terminbuchungssystem besteht aus einem 4-stufigen Workflow, wobei jeder Schritt auf separaten Seiten angezeigt wird. Die Anwendung behält während des gesamten Prozesses das gleiche Grundlayout bei:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Navigationsleiste (orange) mit "Online-Termin-Management" und "HILFE"-Button
+2. Hauptüberschrift "Termin online buchen"
+3. Zweispaltiges Layout:
+4. Linke Spalte: Hauptformularkarte mit schrittspezifischen Eingaben
+5. Rechte Spalte: Informationskarte mit Anbieter- und Termininformationen
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Eine Stepperkomponente zieht sich durch alle Schritte und zeigt das Voranschreiten nur durch die drei Stufen an:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. "Terminart wählen"
+2. "Zeitfenster auswählen"
+3. "Termin bestätigen"
 
-## Learning Laravel
+Schritte1 – Versicherung und Terminart
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.001.png](Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.001.png)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Benutzer wird aufgefordert, Versicherungsart und Terminart auszuwählen
+- Klare Anweisungen: "Bitte wählen Sie Ihre Versicherung und Terminart"
+- Stepper zeigt dies als aktiven Schritt an
+- Keine Schaltfläche
+- Termininformation an der rechten Seite zeigt keine Information
+- Informationskarte zeigt noch keine Terminangaben
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Schitte 2 – Behandler und Termindatum
 
-## Laravel Sponsors
+![Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.002.png](Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.002.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Der Benutzer wird aufgefordert, einen Arzt (Behandler) und ein Datum auszuwählen
+- Inkonsistenzproblem: Eingabebeschriftungen unterscheiden sich im Stil von Schritt 1
+- Stepper zeigt abgeschlossene Schritte in grau an, aber dieser visuelle Hinweis ist unauffällig
+- Ausgewählte Daten aus Schritt 1 erscheinen in der Informationskarte unter "Ihre Termininformationen"
+- System zeigt Verfügbarkeitsmeldung für das ausgewählte Datum
+- UI-Verwirrung: Zwei Zurück-Buttons mit unterschiedlichen Bezeichnungen:
+    - "Zurück zu Terminvorschlägen" auf der linken Seite
+    - "Schritt zurück" auf der rechten Seite
+    - In den vorherigen Schritten wurden keine "Terminvorschläge" angezeigt, was zu Verwirrung führte
 
-### Premium Partners
+Schritt 3: Zeitfensterauswahl
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+![Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.003.png](Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.003.png)
 
-## Contributing
+- Verfügbare Zeitfenster werden auf der Grundlage früherer Auswahlen angezeigt
+- Zeitfenster werden in einem Rasterformat dargestellt
+- Verwirrung auf der Benutzeroberfläche: Die Platzierung der Schaltflächen ist inkonsistent
+- Die Schaltflächen "Andere Termine wählen" und "Schritt zurück" stiften Verwirrung über den Navigationsfluss
+- Die Positionierung der Schaltflächen entspricht nicht der erwarteten Richtung des Prozessflusses
+- Ausgewählte Informationen erscheinen weiterhin in der Informationskarte
+- Schritt 4: Persönliche Informationen
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Schritt 4: Termin bestätigen
 
-## Code of Conduct
+![Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.004.png](Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.004.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- Formular erfasst persönliche Daten (Name, Geschlecht, Geburtsdatum, Kontaktinformationen)
+- Abgeschlossene Schritte im Stepper erscheinen grau mit Häkchen
+- Problem der Farbkonsistenz: Graue Häkchen könnten für bessere Sichtbarkeit verbessert werden
+- UI confusion: Die Beschriftung der Schaltflächen bleibt inkonsistent
+- "Buchung einreichen" und "Schritt zurück" sorgen weiterhin für Verwirrung bei der Navigation
 
-## Security Vulnerabilities
+### Soll-Zustand
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+![Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.005.png](Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.005.png)
 
-## License
+1. Stepper-Komponente
+- Farbkontrast verbessern: Ersetzen Grau durch eine auffälligere Farbe für abgeschlossene Schritte
+- die visuelle Hierarchie verbessern: Erhöhen Sie die Sichtbarkeit des aktiven Schritts
+- klare Nummerierung hinzufügen: Beibehaltung einer einheitlichen Nummerierung für jeden Schritt
+1. Konsistenz der Schaltflächen
+- Standardisierung der Schaltflächenanordnung:
+- "Zurück"-Schaltflächen einheitlich auf der linken Seite platzieren
+- "Weiter/Fortfahren"-Schaltflächen einheitlich auf der rechten Seite platzieren
+1. Vereinheitlichen Sie die Beschriftung der Schaltflächen:
+- eine einheitliche Terminologie für Navigationsaktionen verwenden
+- Die verwirrende Begriffe wie "Zurück zu Terminvorschlägen" durch "Zurück" oder "Vorheriger
+- Schritt" ersetzenkonsequent "Weiter" oder "Nächster Schritt" für die Vorwärtsnavigation verwenden
+1. User Feedback
+- die Auswahlindikatoren verbessern: Deutlicher machen, welche Optionen ausgewählt wurden
+- Zeitfensterauswahl verbessern: die Gestaltung des Hintergrunds/Rahmens verbessern, um die ausgewählten Zeitfenster deutlicher zu machen
+- Deutlichere Verfügbarkeitsmeldungen: Die Verfügbarkeitsmeldungen sollten deutlicher hervorgehoben werden
+1. Form Styling
+- Einheitliches Eingabedesign beibehalten: Stellen sicher, dass alle Formularfelder dem gleichen Designmuster folgen
+- die Feldbezeichnungen verbessern: eine einheitliche Positionierung und Formatierung der Beschriftungen verwenden
+1. Informationskarte
+    - Progressive Offenlegung: bei jedem Schritt zeigen nur die relevanten Informationen an
+    - Visuelle Hierarchie: Typografie und Abstände verwenden, um die angezeigten Informationen besser zu organisieren.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Große Design:
+
+### Techstack
+
+Laravel 12 mit Blade templates with TailwindCSS, preline
+
+Um das Styling der HTML-Formulare zu beschleunigen, wurden tailwindcss und preline gewählt, damit sie eine eingebaute Fehlermeldung, Validierung, intuitives Aussehen und Design haben können.
+
+### Data
+
+Da die Daten nicht persistiert werden, werden nur Termindaten in der lokalen SQL-Datenbank erstellt. Erstellt mit Tabellenmigration, Seeder. Andernfalls wird die Session zum Speichern der Benutzereingaben verwendet.
+
+Da eloquent erfordert, dass jede Tabelle mit einer Modellklasse verbunden ist, um mit ihr als Entität zu interagieren, zumindest um eine Beziehung zwischen Arzt und verfügbarem Termin als Daten-Dummy zu erstellen, werden Modelle aufgeführt.
+
+Model:
+
+- behandler - Speichert Informationen über Ärzte/Praktiker
+
+id, name, titel, fachgebiet, ist_verfuegbar, timestamps
+
+- terminart - Speichert Arten von Terminen
+
+id, name, dauer, ist_verfuegbar, timestamps
+
+- zeitfenster - Speichert verfügbare Terminfenster
+
+id, behandler_id, datum, start_zeit, end_zeit, ist_verfuegbar, timestamps
+
+- versicherung
+
+id, name, typ
+
+### Architechture Design
+
+Die Anwendung folgt Laravels Implementierung des MVC-Musters (Model-View-Controller):
+
+1. Models – app/Models/ -- Daten und ihre Beziehungen
+    - Behandler.php
+    - Terminart.php
+    - Versicherung.php
+    - Zeitfenster
+2. Views – resources/views/ --sie werden die HTML Elemente rendern
+
+Der Einfachheit halber werden die Ansichten anonym gehalten und nur zwei als Komponente registriert: Layout und Navbar.
+
+- Layoutvorlagen in resources/views/layouts/
+- Buchungsschritte in resources/views/buchung/
+- Wiederverwendbare Komponenten in resources/views/components/
+
+Controller – app/Http/Contollers/
+
+- **TerminbuchungController.**php - Verwaltet den Terminbuchungsprozess
+
+User Flow
+
+Die Online Termin Buchung soll 4 Schritten haben:
+
+Der Terminbuchungsprozess besteht aus 4 Schritten:
+
+**Schritt 1: Auswahl der Versicherung und Terminart**
+
+Benutzer wählt die Versicherungsart -> Benutzer wählt die gewünschte Terminart->Daten werden validiert und in der Session gespeichert->Weiter zu Schritt 2
+
+**Schritt 2: Arzt- und Datumsauswahl**
+
+Benutzer wählt einen Arzt -> Benutzer wählt ein Wunschdatum ->System prüft die Verfügbarkeit->Daten werden validiert und in der Session gespeichert->Weiter zu Schritt 3
+
+**Schritt 3: Auswahl des Zeitfensters**
+
+System zeigt verfügbare Zeitfenster->Benutzer wählt ein gewünschtes Zeitfenster->Daten werden validiert und in der Session gespeichert->Weiter zu Schritt 4
+
+**Schritt 4: Eingabe persönlicher Daten**
+
+Benutzer gibt persönliche Daten ein (Name, Geschlecht, Geburtsdatum, Kontaktdaten)->System zeigt eine Bestätigungsübersicht->Benutzer bestätigt die Buchung->Destroy Daten
+
+### Front-End Komponenten
+
+Das Terminbuchungssystem weist jeder Route eine eigene Ansicht zu, wobei wiederverwendbare Komponenten (Stepper, Formularkarte, Infokarte, Modal) dynamisch Sitzungs- und Benutzereingabedaten während des mehrstufigen Prozesses anzeigen. Jede streckenspezifische Ansicht verfügt über eine eigene JavaScript-Funktionalität, die ein isoliertes Verhalten gewährleistet und gleichzeitig gemeinsame UI-Komponenten nutzt, wodurch eine modulare Architektur entsteht, die ein Gleichgewicht zwischen Konsistenz und schrittspezifischen Anforderungen schafft.
+
+Geplante Folder-Tree
+
+resources/views/
+
+├── layouts/
+
+│   └── app.blade.php
+
+├── components/
+
+│   ├── stepper.blade.php
+
+│   ├── navbar.blade.php
+
+│   └── cards/
+
+│   │   ├── form-card.blade.php
+
+│   │   └── info-card.blade.php
+
+│   └── forms/
+
+│       ├── select-field.blade.php
+
+│       ├── date-picker.blade.php
+
+│       └── text-field.blade.php
+
+├── buchung/
+
+│    ├── schritt1.blade.php  # Versicherung, Terminart
+
+│    ├── schritt2.blade.php  # Arzt, Datum
+
+│    ├── schritt3.blade.php  # Zeitfenster
+
+│    ├── schritt4.blade.php  # persönliche Daten
+
+│
+
+├── layouts/
+
+│    └── app.blade.php
+
+Js für schritt1-4
+
+resources/css/js
+
+├── buchung/
+
+│   └── schritt1.js
+
+│   ├── schritt2.js
+
+│   ├── schritt3.js
+
+│   ├── schritt4.js
+
+### Routing
+
+Die Routen werden in routes/web.php definiert:
+
+GET /terminbuchung - Zeigt Schritt 1 an
+
+POST /terminbuchung - Verarbeitet Schritt 1 Übermittlung
+
+GET /terminbuchung/behandler - Zeigt Schritt 2 an
+
+POST /checkverfuegbarkeit - AJAX-Endpunkt zur Überprüfung der Terminverfügbarkeit
+
+POST /terminbuchung/behandler - Verarbeitet Schritt 2
+
+GET /terminbuchung/zeitfenster - Zeigt Schritt 3
+
+POST /terminbuchung/zeitfenster - Verarbeitet Schritt 3 Zeitfenster
+
+GET /terminbuchung/persönlicheDaten - Zeigt Schritt 4
+
+POST /terminbuchung/persönlicheDaten - Verarbeitet Schritt 4
