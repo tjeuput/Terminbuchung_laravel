@@ -27,4 +27,24 @@ class Behandler extends Model
     public function zeitfenster() : HasMany {
         return $this->hasMany(Zeitfenster::class, 'behandler_id');
     }
+    /**
+     * Beziehung zu unterstützten Terminarten
+     */
+    public function terminarten()
+    {
+        return $this->belongsToMany(Terminart::class, 'behandler_terminart');
+    }
+
+    /**
+     * Prüft, ob der Behandler zu einer bestimmten Zeit verfügbar ist
+     */
+    public function istVerfuegbar($datum): bool
+    {
+        return $this->zeitfenster()
+            ->where('datum', $datum)
+            ->where('verfuegbar', true)
+            ->exists();
+    }
+
+
 }

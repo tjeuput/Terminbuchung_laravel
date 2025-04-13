@@ -1,62 +1,40 @@
-<div>
-    <!-- Stepper -->
-    <ul class="relative flex flex-col md:flex-row gap-2">
-        <!-- Item -->
-        <li class="md:shrink md:basis-0 flex-1 group flex gap-x-2 md:block">
-            <div class="min-w-7 min-h-7 flex flex-col items-center md:w-full md:inline-flex md:flex-wrap md:flex-row text-xs align-middle">
-      <span class="size-7 flex justify-center items-center shrink-0 bg-gray-100 font-medium text-gray-800 rounded-full dark:bg-neutral-700 dark:text-white">
-        1
-      </span>
-                <div class="mt-2 w-px h-full md:mt-0 md:ms-2 md:w-full md:h-px md:flex-1 bg-gray-200 group-last:hidden dark:bg-neutral-700"></div>
-            </div>
-            <div class="grow md:grow-0 md:mt-3 pb-5">
-      <span class="block text-sm font-medium text-gray-800 dark:text-white">
-        Step
-      </span>
-                <p class="text-sm text-gray-500 dark:text-neutral-500">
-                    This is a description text.
-                </p>
-            </div>
-        </li>
-        <!-- End Item -->
-
-        <!-- Item -->
-        <li class="md:shrink md:basis-0 flex-1 group flex gap-x-2 md:block">
-            <div class="min-w-7 min-h-7 flex flex-col items-center md:w-full md:inline-flex md:flex-wrap md:flex-row text-xs align-middle">
-      <span class="size-7 flex justify-center items-center shrink-0 bg-gray-100 font-medium text-gray-800 rounded-full dark:bg-neutral-700 dark:text-white">
-        2
-      </span>
-                <div class="mt-2 w-px h-full md:mt-0 md:ms-2 md:w-full md:h-px md:flex-1 bg-gray-200 group-last:hidden dark:bg-neutral-700"></div>
-            </div>
-            <div class="grow md:grow-0 md:mt-3 pb-5">
-      <span class="block text-sm font-medium text-gray-800 dark:text-white">
-        Step
-      </span>
-                <p class="text-sm text-gray-500 dark:text-neutral-500">
-                    This is a description text.
-                </p>
-            </div>
-        </li>
-        <!-- End Item -->
-
-        <!-- Item -->
-        <li class="md:shrink md:basis-0 flex-1 group flex gap-x-2 md:block">
-            <div class="min-w-7 min-h-7 flex flex-col items-center md:w-full md:inline-flex md:flex-wrap md:flex-row text-xs align-middle">
-      <span class="size-7 flex justify-center items-center shrink-0 bg-gray-100 font-medium text-gray-800 rounded-full dark:bg-neutral-700 dark:text-white">
-        3
-      </span>
-                <div class="mt-2 w-px h-full md:mt-0 md:ms-2 md:w-full md:h-px md:flex-1 bg-gray-200 group-last:hidden dark:bg-neutral-700"></div>
-            </div>
-            <div class="grow md:grow-0 md:mt-3 pb-5">
-      <span class="block text-sm font-medium text-gray-800 dark:text-white">
-        Step
-      </span>
-                <p class="text-sm text-gray-500 dark:text-neutral-500">
-                    This is a description text.
-                </p>
-            </div>
-        </li>
-        <!-- End Item -->
+<div class="bg-white rounded-lg p-4 mb-6">
+    <ul class="relative flex flex-row gap-x-2">
+        @for ($i = 1; $i <= 4; $i++)
+            <li class="flex flex-1 shrink basis-0 items-center gap-x-2 group {{ $currentStep == $i ? 'active' : '' }} {{ $currentStep > $i ? 'success' : '' }}">
+                <span class="group inline-flex min-h-7 min-w-7 items-center align-middle text-xs">
+                    <span class="size-7 flex justify-center items-center shrink-0 rounded-full
+                        {{ $currentStep == $i ? 'bg-orange-600 text-white' : 'bg-gray-100 text-gray-800' }}
+                        {{ $currentStep > $i ? 'bg-orange-500 text-white' : '' }}">
+                        @if ($currentStep > $i)
+                            <svg class="size-3 shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        @else
+                            {{ $i }}
+                        @endif
+                    </span>
+                    <span class="ms-2 text-sm font-medium {{ $currentStep >= $i ? 'text-orange-600' : 'text-gray-800' }}">
+                        @switch($i)
+                            @case(1)
+                                Versicherung & Terminart
+                                @break
+                            @case(2)
+                                Behandler & Datum
+                                @break
+                            @case(3)
+                                Zeitfenster
+                                @break
+                            @case(4)
+                                Persönliche Daten
+                                @break
+                        @endswitch
+                    </span>
+                </span>
+                @if ($i < 4)
+                    <div class="h-px w-full flex-1 bg-gray-200 group-last:hidden {{ $currentStep > $i ? 'bg-orange-500' : '' }}"></div>
+                @endif
+            </li>
+        @endfor
     </ul>
-    <!-- End Stepper -->
 </div>
