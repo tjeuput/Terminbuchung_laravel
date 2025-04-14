@@ -187,7 +187,19 @@ GET /terminbuchung - Zeigt Schritt 1 an
 POST /terminbuchung - Verarbeitet Schritt 1 Übermittlung
 GET /terminbuchung/behandler - Zeigt Schritt 2 an
 POST /terminbuchung/behandler - Verarbeitet Schritt 2
-GET /terminbuchung/zeitfenster - Zeigt Schritt 3
-POST /terminbuchung/zeitfenster - Verarbeitet Schritt 3 Zeitfenster
-GET /terminbuchung/persönlicheDaten - Zeigt Schritt 4
-POST /terminbuchung/persönlicheDaten - Verarbeitet Schritt 4
+
+### Installation erfolg durch:
+
+composer install
+
+Install JavaScript dependencies:
+npm install
+
+Anwendungschlüssel erzeugen
+php artisan key:generate
+
+Database migrations:
+php artisan migrate
+
+Dummy data on Seeder:
+php artisan db:seed --class=TerminbuchungSeeder
