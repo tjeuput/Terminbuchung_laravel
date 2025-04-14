@@ -71,22 +71,22 @@ Schritt 4: Termin bestätigen
 - Farbkontrast verbessern: Ersetzen Grau durch eine auffälligere Farbe für abgeschlossene Schritte
 - die visuelle Hierarchie verbessern: Erhöhen Sie die Sichtbarkeit des aktiven Schritts
 - klare Nummerierung hinzufügen: Beibehaltung einer einheitlichen Nummerierung für jeden Schritt
-1. Konsistenz der Schaltflächen
+2. Konsistenz der Schaltflächen
 - Standardisierung der Schaltflächenanordnung:
 - "Zurück"-Schaltflächen einheitlich auf der linken Seite platzieren
 - "Weiter/Fortfahren"-Schaltflächen einheitlich auf der rechten Seite platzieren
-1. Vereinheitlichen Sie die Beschriftung der Schaltflächen:
+3. Vereinheitlichen Sie die Beschriftung der Schaltflächen:
 - eine einheitliche Terminologie für Navigationsaktionen verwenden
 - Die verwirrende Begriffe wie "Zurück zu Terminvorschlägen" durch "Zurück" oder "Vorheriger
 - Schritt" ersetzenkonsequent "Weiter" oder "Nächster Schritt" für die Vorwärtsnavigation verwenden
-1. User Feedback
+4. User Feedback
 - die Auswahlindikatoren verbessern: Deutlicher machen, welche Optionen ausgewählt wurden
 - Zeitfensterauswahl verbessern: die Gestaltung des Hintergrunds/Rahmens verbessern, um die ausgewählten Zeitfenster deutlicher zu machen
 - Deutlichere Verfügbarkeitsmeldungen: Die Verfügbarkeitsmeldungen sollten deutlicher hervorgehoben werden
-1. Form Styling
+5. Form Styling
 - Einheitliches Eingabedesign beibehalten: Stellen sicher, dass alle Formularfelder dem gleichen Designmuster folgen
 - die Feldbezeichnungen verbessern: eine einheitliche Positionierung und Formatierung der Beschriftungen verwenden
-1. Informationskarte
+6. Informationskarte
     - Progressive Offenlegung: bei jedem Schritt zeigen nur die relevanten Informationen an
     - Visuelle Hierarchie: Typografie und Abstände verwenden, um die angezeigten Informationen besser zu organisieren.
 
