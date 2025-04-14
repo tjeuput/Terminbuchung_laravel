@@ -38,7 +38,7 @@
                     </div>
                 @endforeach
 
-                <!-- Personal data will be displayed here from form -->
+                <!-- Personal data  -->
                 <div id="personal-data-preview"></div>
 
                 <div class="mt-4 p-3 bg-blue-50 rounded-lg">

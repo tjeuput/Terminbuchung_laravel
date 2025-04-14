@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Opening modal with valid content:', formIstGueltig);
         modal.classList.remove('hidden');
 
-        // Show appropriate content based on validation
         if (formIstGueltig) {
             // Update personal data in modal before showing it
             updatePersonalDataPreview();
@@ -44,12 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cancelBtn?.addEventListener('click', closeModal);
     overlay?.addEventListener('click', closeModal);
 
-    // Escape key listener
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
-            closeModal();
-        }
-    });
+
 
     // Form submission
     submitBtn?.addEventListener('click', function() {
@@ -126,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
 
-        // Add each field
+        // getting personal data
         const personalData = {
             'Vorname': vorname,
             'Nachname': nachname,
@@ -135,12 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'E-Mail': email
         };
 
-        // Add telefon only if it has a value
+        // Handynummer wenn gibt
         if (telefon) {
             personalData['Telefon'] = telefon;
         }
 
-        // Create row for each field
+        // Zeile für jedes Feld
         for (const [label, value] of Object.entries(personalData)) {
             personalDataHTML += `
                 <div class="flex py-2 border-b border-gray-100">
@@ -150,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
 
-        // Update the preview
+        //preview update
         personalDataPreview.innerHTML = personalDataHTML;
     }
 
