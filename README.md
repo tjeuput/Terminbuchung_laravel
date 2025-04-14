@@ -65,8 +65,6 @@ Schritt 4: Termin bestätigen
 
 ### Soll-Zustand
 
-![Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.005.png](Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.005.png)
-
 1. Stepper-Komponente
 - Farbkontrast verbessern: Ersetzen Grau durch eine auffälligere Farbe für abgeschlossene Schritte
 - die visuelle Hierarchie verbessern: Erhöhen Sie die Sichtbarkeit des aktiven Schritts
@@ -89,8 +87,12 @@ Schritt 4: Termin bestätigen
 6. Informationskarte
     - Progressive Offenlegung: bei jedem Schritt zeigen nur die relevanten Informationen an
     - Visuelle Hierarchie: Typografie und Abstände verwenden, um die angezeigten Informationen besser zu organisieren.
+7. Auf Datenvalidirung achten
+- Überprüfung der persönlichen Daten (Name, Geschlecht, Geburtsdatum, E-Mail, Handynummer, usw..)
 
 Große Design:
+
+![Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.005.png](Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.005.png)
 
 ### Techstack
 
@@ -132,119 +134,70 @@ Die Anwendung folgt Laravels Implementierung des MVC-Musters (Model-View-Control
     - Versicherung.php
     - Zeitfenster
 2. Views – resources/views/ --sie werden die HTML Elemente rendern
-
 Der Einfachheit halber werden die Ansichten anonym gehalten und nur zwei als Komponente registriert: Layout und Navbar.
-
 - Layoutvorlagen in resources/views/layouts/
 - Buchungsschritte in resources/views/buchung/
 - Wiederverwendbare Komponenten in resources/views/components/
 
-Controller – app/Http/Contollers/
-
-- **TerminbuchungController.**php - Verwaltet den Terminbuchungsprozess
+3. Controller – app/Http/Contollers/
+- TerminbuchungController.php - Verwaltet den Terminbuchungsprozess
 
 User Flow
 
 Die Online Termin Buchung soll 4 Schritten haben:
 
 Der Terminbuchungsprozess besteht aus 4 Schritten:
-
 **Schritt 1: Auswahl der Versicherung und Terminart**
-
 Benutzer wählt die Versicherungsart -> Benutzer wählt die gewünschte Terminart->Daten werden validiert und in der Session gespeichert->Weiter zu Schritt 2
-
 **Schritt 2: Arzt- und Datumsauswahl**
-
 Benutzer wählt einen Arzt -> Benutzer wählt ein Wunschdatum ->System prüft die Verfügbarkeit->Daten werden validiert und in der Session gespeichert->Weiter zu Schritt 3
-
 **Schritt 3: Auswahl des Zeitfensters**
-
-System zeigt verfügbare Zeitfenster->Benutzer wählt ein gewünschtes Zeitfenster->Daten werden validiert und in der Session gespeichert->Weiter zu Schritt 4
-
+System zeigt verfügbare Zeitfenster->Benutzer wählt ein gewünschtes Zeitfenster->Daten werden validiert, Asyc Abruf zur Prüfen und Nachricht zurück, und in der Session gespeichert->Weiter zu Schritt 4
 **Schritt 4: Eingabe persönlicher Daten**
-
 Benutzer gibt persönliche Daten ein (Name, Geschlecht, Geburtsdatum, Kontaktdaten)->System zeigt eine Bestätigungsübersicht->Benutzer bestätigt die Buchung->Destroy Daten
 
 ### Front-End Komponenten
-
 Das Terminbuchungssystem weist jeder Route eine eigene Ansicht zu, wobei wiederverwendbare Komponenten (Stepper, Formularkarte, Infokarte, Modal) dynamisch Sitzungs- und Benutzereingabedaten während des mehrstufigen Prozesses anzeigen. Jede streckenspezifische Ansicht verfügt über eine eigene JavaScript-Funktionalität, die ein isoliertes Verhalten gewährleistet und gleichzeitig gemeinsame UI-Komponenten nutzt, wodurch eine modulare Architektur entsteht, die ein Gleichgewicht zwischen Konsistenz und schrittspezifischen Anforderungen schafft.
 
-Geplante Folder-Tree
-
+Geplante Folder-Tree für Viws
 resources/views/
-
 ├── layouts/
-
 │   └── app.blade.php
-
 ├── components/
-
 │   ├── stepper.blade.php
-
 │   ├── navbar.blade.php
-
 │   └── cards/
-
 │   │   ├── form-card.blade.php
-
 │   │   └── info-card.blade.php
-
 │   └── forms/
-
 │       ├── select-field.blade.php
-
 │       ├── date-picker.blade.php
-
 │       └── text-field.blade.php
-
 ├── buchung/
-
 │    ├── schritt1.blade.php  # Versicherung, Terminart
-
 │    ├── schritt2.blade.php  # Arzt, Datum
-
 │    ├── schritt3.blade.php  # Zeitfenster
-
 │    ├── schritt4.blade.php  # persönliche Daten
-
 │
-
 ├── layouts/
-
 │    └── app.blade.php
 
-Js für schritt1-4
+Js für DOM,, Datenvalidierung echt-Zeit mit Axio (Asyc) für jede Seite Schritt1-4
 
 resources/css/js
-
 ├── buchung/
-
 │   └── schritt1.js
-
 │   ├── schritt2.js
-
 │   ├── schritt3.js
-
 │   ├── schritt4.js
 
 ### Routing
-
 Die Routen werden in routes/web.php definiert:
-
 GET /terminbuchung - Zeigt Schritt 1 an
-
 POST /terminbuchung - Verarbeitet Schritt 1 Übermittlung
-
 GET /terminbuchung/behandler - Zeigt Schritt 2 an
-
-POST /checkverfuegbarkeit - AJAX-Endpunkt zur Überprüfung der Terminverfügbarkeit
-
 POST /terminbuchung/behandler - Verarbeitet Schritt 2
-
 GET /terminbuchung/zeitfenster - Zeigt Schritt 3
-
 POST /terminbuchung/zeitfenster - Verarbeitet Schritt 3 Zeitfenster
-
 GET /terminbuchung/persönlicheDaten - Zeigt Schritt 4
-
 POST /terminbuchung/persönlicheDaten - Verarbeitet Schritt 4
