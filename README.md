@@ -142,6 +142,8 @@ Der Einfachheit halber werden die Ansichten anonym gehalten und nur zwei als Kom
 3. Controller – app/Http/Contollers/
 - TerminbuchungController.php - Verwaltet den Terminbuchungsprozess
 
+Trennung von benötigen Helpers soll berücksichtigt werden
+
 User Flow
 
 Die Online Termin Buchung soll 4 Schritten haben:
