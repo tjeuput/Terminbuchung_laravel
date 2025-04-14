@@ -95,33 +95,21 @@ Große Design:
 ![Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.005.png](Aspose.Words.c2296617-068c-40bd-b3f0-17ef376c2483.005.png)
 
 ### Techstack
-
-Laravel 12 mit Blade templates with TailwindCSS, preline
-
+Laravel 12 mit Blade templates with TailwindCSS, preline, flowbit
 Um das Styling der HTML-Formulare zu beschleunigen, wurden tailwindcss und preline gewählt, damit sie eine eingebaute Fehlermeldung, Validierung, intuitives Aussehen und Design haben können.
 
 ### Data
-
 Da die Daten nicht persistiert werden, werden nur Termindaten in der lokalen SQL-Datenbank erstellt. Erstellt mit Tabellenmigration, Seeder. Andernfalls wird die Session zum Speichern der Benutzereingaben verwendet.
-
 Da eloquent erfordert, dass jede Tabelle mit einer Modellklasse verbunden ist, um mit ihr als Entität zu interagieren, zumindest um eine Beziehung zwischen Arzt und verfügbarem Termin als Daten-Dummy zu erstellen, werden Modelle aufgeführt.
 
 Model:
-
 - behandler - Speichert Informationen über Ärzte/Praktiker
-
 id, name, titel, fachgebiet, ist_verfuegbar, timestamps
-
 - terminart - Speichert Arten von Terminen
-
 id, name, dauer, ist_verfuegbar, timestamps
-
 - zeitfenster - Speichert verfügbare Terminfenster
-
 id, behandler_id, datum, start_zeit, end_zeit, ist_verfuegbar, timestamps
-
 - versicherung
-
 id, name, typ
 
 ### Architechture Design
@@ -129,10 +117,10 @@ id, name, typ
 Die Anwendung folgt Laravels Implementierung des MVC-Musters (Model-View-Controller):
 
 1. Models – app/Models/ -- Daten und ihre Beziehungen
-    - Behandler.php
+    - Behandler.php -1 zu N Zeitfenster
     - Terminart.php
     - Versicherung.php
-    - Zeitfenster
+    - Zeitfenster.php - 1 zu N - Behandler_id
 2. Views – resources/views/ --sie werden die HTML Elemente rendern
 Der Einfachheit halber werden die Ansichten anonym gehalten und nur zwei als Komponente registriert: Layout und Navbar.
 - Layoutvorlagen in resources/views/layouts/
